@@ -304,17 +304,33 @@ const Index = () => {
             </Dialog>
           </div>
 
-          <div className="pt-8 opacity-60 space-y-2">
+          <div className="pt-8 opacity-60 space-y-3">
+            <div className="flex flex-wrap justify-center gap-4 text-sm">
+              <a 
+                href="/features" 
+                className="text-white/80 hover:text-white transition-colors inline-flex items-center gap-1 hover:underline"
+              >
+                <Icon name="Sparkles" size={14} />
+                Возможности
+              </a>
+              <a 
+                href="/faq" 
+                className="text-white/80 hover:text-white transition-colors inline-flex items-center gap-1 hover:underline"
+              >
+                <Icon name="HelpCircle" size={14} />
+                FAQ
+              </a>
+              <a 
+                href="/privacy" 
+                className="text-white/80 hover:text-white transition-colors inline-flex items-center gap-1 hover:underline"
+              >
+                <Icon name="Shield" size={14} />
+                Политика конфиденциальности
+              </a>
+            </div>
             <p className="text-white text-sm">
               © 2025 lt.MAX. Все права защищены
             </p>
-            <a 
-              href="/privacy" 
-              className="text-white/80 text-sm hover:text-white transition-colors inline-flex items-center gap-1 hover:underline"
-            >
-              <Icon name="Shield" size={14} />
-              Политика конфиденциальности
-            </a>
           </div>
         </div>
       </div>
