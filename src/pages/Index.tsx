@@ -1,18 +1,41 @@
 import { Button } from "@/components/ui/button";
 import Icon from "@/components/ui/icon";
+import { useState, useEffect } from "react";
 
 const Index = () => {
+  const [downloadCount, setDownloadCount] = useState(0);
+  const [isDownloading, setIsDownloading] = useState(false);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("ltmax-downloads");
+    if (saved) {
+      setDownloadCount(parseInt(saved));
+    }
+  }, []);
+
   const handleDownload = () => {
-    const content = "Ха ха ты серьёзно, это же МАХ плюс бро ты отстой";
-    const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "lt.MAX.txt";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    window.URL.revokeObjectURL(url);
+    setIsDownloading(true);
+    
+    setTimeout(() => {
+      const content = "Ха ха ты серьёзно, это же МАХ плюс бро ты отстой";
+      const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "lt.MAX.txt";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+
+      const newCount = downloadCount + 1;
+      setDownloadCount(newCount);
+      localStorage.setItem("ltmax-downloads", newCount.toString());
+      
+      setTimeout(() => {
+        setIsDownloading(false);
+      }, 500);
+    }, 1500);
   };
 
   return (
@@ -38,15 +61,34 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="pt-8">
+          <div className="pt-8 space-y-4">
             <Button 
               onClick={handleDownload}
+              disabled={isDownloading}
               size="lg"
-              className="bg-white text-[#8B5CF6] hover:bg-white/90 text-xl px-12 py-6 rounded-full shadow-2xl hover:scale-105 transition-all duration-300 font-semibold"
+              className="bg-white text-[#8B5CF6] hover:bg-white/90 text-xl px-12 py-6 rounded-full shadow-2xl hover:scale-105 transition-all duration-300 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <Icon name="Download" size={24} className="mr-2" />
-              Скачать lt.MAX
+              {isDownloading ? (
+                <>
+                  <Icon name="Loader2" size={24} className="mr-2 animate-spin" />
+                  Скачивание...
+                </>
+              ) : (
+                <>
+                  <Icon name="Download" size={24} className="mr-2" />
+                  Скачать lt.MAX
+                </>
+              )}
             </Button>
+
+            {downloadCount > 0 && (
+              <div className="flex items-center justify-center gap-2 text-white/80 animate-fade-in">
+                <Icon name="Users" size={18} />
+                <span className="text-sm">
+                  Скачали {downloadCount} {downloadCount === 1 ? 'раз' : 'раза'}
+                </span>
+              </div>
+            )}
           </div>
 
           <div className="pt-12">
