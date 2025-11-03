@@ -79,18 +79,46 @@ const Index = () => {
     }
   };
 
-  const handleFeedbackSubmit = (e: React.FormEvent) => {
+  const handleFeedbackSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    toast({
-      title: "Спасибо за обратную связь!",
-      description: "Мы получили ваше сообщение и скоро ответим",
-    });
-    
-    setFeedbackName("");
-    setFeedbackEmail("");
-    setFeedbackMessage("");
-    setIsDialogOpen(false);
+    try {
+      const response = await fetch('https://functions.poehali.dev/28e526cf-9c66-457b-b378-4904d9330264', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: feedbackName,
+          email: feedbackEmail,
+          message: feedbackMessage
+        })
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Спасибо за обратную связь!",
+          description: "Мы получили ваше сообщение и скоро ответим",
+        });
+        
+        setFeedbackName("");
+        setFeedbackEmail("");
+        setFeedbackMessage("");
+        setIsDialogOpen(false);
+      } else {
+        toast({
+          title: "Ошибка",
+          description: "Не удалось отправить сообщение. Попробуйте позже",
+          variant: "destructive"
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Ошибка",
+        description: "Не удалось отправить сообщение. Проверьте подключение",
+        variant: "destructive"
+      });
+    }
   };
 
   return (
