@@ -119,10 +119,17 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="pt-8 opacity-60">
+          <div className="pt-8 opacity-60 space-y-2">
             <p className="text-white text-sm">
               © 2025 lt.MAX. Все права защищены
             </p>
+            <a 
+              href="/privacy" 
+              className="text-white/80 text-sm hover:text-white transition-colors inline-flex items-center gap-1 hover:underline"
+            >
+              <Icon name="Shield" size={14} />
+              Политика конфиденциальности
+            </a>
           </div>
         </div>
       </div>
