@@ -49,21 +49,31 @@ const Index = () => {
             </Button>
           </div>
 
-          <div className="pt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all">
-              <div className="flex items-center gap-4 mb-3">
-                <Icon name="Zap" size={28} className="text-yellow-300" />
-                <h3 className="text-2xl font-semibold text-white">Быстро</h3>
-              </div>
-              <p className="text-white/80">Мгновенная доставка сообщений</p>
+          <div className="pt-12">
+            <div className="mb-8">
+              <img 
+                src="https://cdn.poehali.dev/files/9ee7b027-d650-4c1e-a0f7-f5fa8ec7fefe.png" 
+                alt="lt.MAX Интерфейс" 
+                className="w-full max-w-md mx-auto rounded-3xl shadow-2xl border-4 border-white/20"
+              />
             </div>
 
-            <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all">
-              <div className="flex items-center gap-4 mb-3">
-                <Icon name="Lock" size={28} className="text-green-300" />
-                <h3 className="text-2xl font-semibold text-white">Безопасно</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all">
+                <div className="flex items-center gap-4 mb-3">
+                  <Icon name="Zap" size={28} className="text-yellow-300" />
+                  <h3 className="text-2xl font-semibold text-white">Быстро</h3>
+                </div>
+                <p className="text-white/80">Мгновенная доставка сообщений</p>
               </div>
-              <p className="text-white/80">Шифрование всех данных</p>
+
+              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all">
+                <div className="flex items-center gap-4 mb-3">
+                  <Icon name="Lock" size={28} className="text-green-300" />
+                  <h3 className="text-2xl font-semibold text-white">Безопасно</h3>
+                </div>
+                <p className="text-white/80">Шифрование всех данных</p>
+              </div>
             </div>
           </div>
 
